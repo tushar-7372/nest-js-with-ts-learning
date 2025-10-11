@@ -19,6 +19,10 @@ import { CurrentUser } from './decorators/current-user.decorator';
 // r2
 import { User } from './users.entity';
 
+// auth guard
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from './guards/auth.guard';
+
 // currently , our CurrentUserInterceptor is very controller scoped that means if we have to use this interceptor in some other place , we will have to do all of this imports and code duplication
 // we want to make this interceptor globally scoped and we can make use of @CurrentUser() in any controller easily
 // addding this decorator makes sure that our current 'current-user.interceptor.ts' runs before the req starts getting handled by the controller , so that in the req we have user
@@ -41,6 +45,7 @@ export class UsersController {
 
     // we want to extend the use case of the above 'whoami' - we want to create a custom decorator which when called gives the current user 
     @Get('/whoami')
+    @UseGuards(AuthGuard) //this will apply this auth giard to this route , it will check if request.session.userId has some value , authentication passes else no
     whoAmI(@CurrentUser() currentUser : User){
         return currentUser;
     }

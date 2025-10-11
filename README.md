@@ -35,7 +35,6 @@ using api client here
 - in the controller for singup , we are using DTO to verify the incoming req
 - while sending the response , we are making use of CUSTOM INTERCEPTORS to send the response
 -
--
 - installing a package to manage cookie 
 > npm install cookie-session @types/cookie-session
 - using 'cookie-session' and setting it up in 'main.ts' file
@@ -49,5 +48,8 @@ using api client here
 - Param decorators exist outside the DI system , so our decorator cannot get an instance of UserService directly, to solve this we will have to make use of DECORATOR + INTERCEPTOR , file : current-user.interceptor.ts
 - to make sure that our 'current-user.interceptor.ts' runs before the req starts getting handled by the controller , so that in the req we have user , we used @UseInterceptors(CurrentUserInterceptor) in the user controller
 - 
-- **commit**
 - improving CurrentUserInterceptor from controller scoped to global scoped
+- 
+- **commit**
+- rejecting requests to a certain handler if the user is not sugned in ( GUARD )
+- 
