@@ -45,9 +45,9 @@ using api client here
 - use case : to know who is current signed in user
 - creating routes using this : to check who is the current signed in user , sign out api
 - creating a CUSTOM DECORATOR , making use of createParamDecorator , file : current.user.decorator.ts
-
-- **commit**
-
+-
 - Param decorators exist outside the DI system , so our decorator cannot get an instance of UserService directly, to solve this we will have to make use of DECORATOR + INTERCEPTOR , file : current-user.interceptor.ts
 - to make sure that our 'current-user.interceptor.ts' runs before the req starts getting handled by the controller , so that in the req we have user , we used @UseInterceptors(CurrentUserInterceptor) in the user controller
 - 
+- **commit**
+- improving CurrentUserInterceptor from controller scoped to global scoped

@@ -14,12 +14,15 @@ import { Session } from '@nestjs/common';
 import { CurrentUser } from './decorators/current-user.decorator';
 
 // to make sure that our 'current-user.interceptor.ts' runs before the req starts getting handled by the controller , so that in the req we have user
-import { UseInterceptors } from '@nestjs/common';
-import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+// import { UseInterceptors } from '@nestjs/common';
+// import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+// r2
 import { User } from './users.entity';
 
+// currently , our CurrentUserInterceptor is very controller scoped that means if we have to use this interceptor in some other place , we will have to do all of this imports and code duplication
+// we want to make this interceptor globally scoped and we can make use of @CurrentUser() in any controller easily
 // addding this decorator makes sure that our current 'current-user.interceptor.ts' runs before the req starts getting handled by the controller , so that in the req we have user
-@UseInterceptors(CurrentUserInterceptor)
+// @UseInterceptors(CurrentUserInterceptor) // to do this remove this line : r1
 @Serialize(UserDto)
 @Controller('auth')
 export class UsersController {
