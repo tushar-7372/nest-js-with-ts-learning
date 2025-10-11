@@ -26,3 +26,7 @@ using api client here
 
 => excluding few properties in api response ( option 2)
 - writting custom interceptors and using dto
+
+===
+what is done in the above commit : 
+created an interceptor and a dto , applied that dto to that interceptor that is manipulating the data we are sending as response 
