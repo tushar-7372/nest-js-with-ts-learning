@@ -29,4 +29,9 @@ using api client here
 - writting custom interceptors and using dto
 
 : topics 2 ( current ) : 
-commit :  creating a service (AuthService) inside UsersModule that users will call for creating account and login in ( internally we will hash the password )
+-- commit :  
+- creating a service (AuthService) inside UsersModule that users will call for creating account and login in ( internally we will hash the password )
+- auth service via DEPENDENCY INJECTION is making use of users service to create an user
+- internally implementing SALT and HASHING
+- in the controller for singup , we are using DTO to verify the incoming req
+- while sending the response , we are making use of custom interceptors to send the response
