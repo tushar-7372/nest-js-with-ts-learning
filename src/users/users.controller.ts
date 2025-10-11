@@ -8,6 +8,9 @@ import { Serialize } from 'src/interceptors/serialize.interceptor';
 
 import { AuthService } from './auth.service';
 
+// to manage cookie session 
+import { Session } from '@nestjs/common';
+
 @Serialize(UserDto)
 @Controller('auth')
 export class UsersController {
@@ -17,12 +20,31 @@ export class UsersController {
         private authService : AuthService
     ){}
 
+    // for understanding cookie and session
+    // set color in the session object
+    @Get('/colors/:color')
+    setColor(@Param('color') color : string , @Session() session : any){
+        session.color = color;
+    }
+
+    // get color from the session object
+    @Get('/colors')
+    getColor(@Session() session : any){
+        return session.color;
+    }
+
     @Post('/signup')
     createUser(@Body() body : CreateUserDto){
         // this.usersService.create(body.email , body.password);
 
         // using AuthService
-        this.authService.singup(body.email , body.password);
+        return this.authService.singup(body.email , body.password);
+    }
+
+    @Post('/signin')
+    singin(@Body() body : CreateUserDto){
+
+        return this.authService.singin(body.email,body.password);
     }
 
     @Get('/:id')

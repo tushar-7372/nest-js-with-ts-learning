@@ -24,7 +24,7 @@ export class UsersService {
     }
 
     find(email : string){
-        // repo functions return a promise
+        // repo functions return a promise with array of all the users found with this email
         return this.repo.find( {where : {email} } );
     }
 

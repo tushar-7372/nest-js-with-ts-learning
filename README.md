@@ -28,10 +28,15 @@ using api client here
 => excluding few properties in api response ( option 2)
 - writting custom interceptors and using dto
 
-: topics 2 ( current ) : 
--- commit :  
+: topics 2 ( current ) :  
 - creating a service (AuthService) inside UsersModule that users will call for creating account and login in ( internally we will hash the password )
 - auth service via DEPENDENCY INJECTION is making use of users service to create an user
 - internally implementing SALT and HASHING
 - in the controller for singup , we are using DTO to verify the incoming req
-- while sending the response , we are making use of custom interceptors to send the response
+- while sending the response , we are making use of CUSTOM INTERCEPTORS to send the response
+-
+- - commit : 
+- installing a package to manage cookie 
+> npm install cookie-session @types/cookie-session
+- using 'cookie-session' and setting it up in 'main.ts' file
+- creating 2 routes in UsersController to understand cookie and session

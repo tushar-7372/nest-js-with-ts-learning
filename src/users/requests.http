@@ -1,5 +1,14 @@
-### create user
+### create user / sing up
 POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+    "email" : "3@gmail.com",
+    "password" : "pass"
+} 
+
+### sign in / login
+POST http://localhost:3000/auth/signin
 content-type: application/json
 
 {
@@ -23,3 +32,9 @@ content-type: 'application/json'
 {
     "email" : "updated@gmail.com"
 }
+
+### set a color
+GET http://localhost:3000/auth/colors/red
+
+### get the color
+GET http://localhost:3000/auth/colors

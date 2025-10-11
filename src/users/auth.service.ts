@@ -5,6 +5,7 @@ import { promisify } from "util";
 // scrypt - hash function but it returns a promise which needs to used using callbacks , to avoid using callbacks we are using 'promisify'
 const scrypt = promisify(_scrypt);
 
+import { NotFoundException } from "@nestjs/common";
 
 @Injectable()
 export class AuthService{
@@ -33,16 +34,33 @@ export class AuthService{
 
         const result = salt + '.' + hash.toString('hex');
 
-
         // 3 : create a new user and save it
         const user = this.usersService.create(email , result );
 
-        // return the user
+        // 4 : return the user
         return user;
     }
 
-    singin(){
+    async singin(email : string , password : string){
 
+        // it returns a promise and an array of users
+        // using DE-STRUCTURING
+        const [user] = await this.usersService.find(email);
+
+        if(!user){
+            throw new NotFoundException(`user with this email ${email} not found`);
+        }
+
+        const [salt , storedHash] = user.password.split('.');
+
+        const hash = (await scrypt(password , salt , 32)) as Buffer;
+
+        if(storedHash !== hash.toString('hex')){
+            throw new BadRequestException('password not correct');
+           
+        }
+
+        return user;
     }
 
 }
