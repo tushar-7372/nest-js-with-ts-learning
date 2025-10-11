@@ -11,7 +11,7 @@ content-type: application/json
 GET http://localhost:3000/auth/1
 
 ### find all users with a given email
-GET http://localhost:3000/auth?email=5@gmail.com
+GET http://localhost:3000/auth?email=1@gmail.com
 
 ### delete an user by an id
 DELETE http://localhost:3000/auth/1

@@ -4,8 +4,15 @@ import { map } from "rxjs/operators";
 import { plainToClass } from "class-transformer";
 // import { UserDto } from "src/users/dtos/user.dto";
 
+// 1 : Serialize(dto : any) : here if we pass any thing not just classes even plain string , ts doesnot give any error
+// 2 : while runnning it will give errors 
+// to fix 1 , we have created an interface that checks the argument must be a class ( any class )
+interface ClassContructor{
+    new (...args: any[]) : {}
+}
+
 // decorators are just plain function , making our own custom decorator
-export function Serialize(dto : any){
+export function Serialize(dto : ClassContructor){
     return UseInterceptors(new SerializeInterceptor(dto))
 }
 

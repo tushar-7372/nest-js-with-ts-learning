@@ -29,4 +29,4 @@ using api client here
 
 ===
 what is done in this commit : 
-to make use of custom interceptors, we were using complex code @UseInterceptors(new SerializeInterceptor(UserDto)) , refactored this with the help of custom decorators , we will further improve this by applying it to all routes and removing any type
+to make use of custom interceptors, we were using complex code @UseInterceptors(new SerializeInterceptor(UserDto)) , refactored this with the help of custom decorators , we will further improve this by applying it to all routes and removing any type : made small improvement on this part
