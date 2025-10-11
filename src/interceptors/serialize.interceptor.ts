@@ -19,12 +19,13 @@ export class SerializeInterceptor implements NestInterceptor{
     intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any>  {
 
         return next.handle().pipe(
+
             map( (data : any) => {
-                
                 return plainToClass(this.dto , data , {
                     excludeExtraneousValues : true // this only sends the fields marked with @Expose() decorator
                 })
             })
+            
         )
     }
 }

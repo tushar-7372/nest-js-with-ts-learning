@@ -13,6 +13,13 @@ import { Session } from '@nestjs/common';
 
 import { CurrentUser } from './decorators/current-user.decorator';
 
+// to make sure that our 'current-user.interceptor.ts' runs before the req starts getting handled by the controller , so that in the req we have user
+import { UseInterceptors } from '@nestjs/common';
+import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+import { User } from './users.entity';
+
+// addding this decorator makes sure that our current 'current-user.interceptor.ts' runs before the req starts getting handled by the controller , so that in the req we have user
+@UseInterceptors(CurrentUserInterceptor)
 @Serialize(UserDto)
 @Controller('auth')
 export class UsersController {
@@ -31,7 +38,7 @@ export class UsersController {
 
     // we want to extend the use case of the above 'whoami' - we want to create a custom decorator which when called gives the current user 
     @Get('/whoami')
-    whoAmI(@CurrentUser() currentUser : string){
+    whoAmI(@CurrentUser() currentUser : User){
         return currentUser;
     }
 

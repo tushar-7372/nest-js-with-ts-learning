@@ -3,7 +3,7 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-    "email" : "5@gmail.com",
+    "email" : "6@gmail.com",
     "password" : "pass"
 } 
 
@@ -16,7 +16,7 @@ content-type: application/json
     "password" : "pass"
 } 
 
-### get the current session user
+### get the current session user ( who am i ) 
 GET http://localhost:3000/auth/whoami
 
 ### signout
