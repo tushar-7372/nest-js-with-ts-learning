@@ -19,6 +19,10 @@ export class UsersService {
 
     // when we are sending the user data , we are also sending the user's password which is not correct
     findOne(id : number){
+        // if id = null , then return this.repo.findOneBy({ id }) returns the first user , not null
+        if(!id){
+            return null;
+        }
 
         return this.repo.findOneBy({ id })
     }

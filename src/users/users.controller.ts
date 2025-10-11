@@ -11,6 +11,8 @@ import { AuthService } from './auth.service';
 // to manage cookie session 
 import { Session } from '@nestjs/common';
 
+import { CurrentUser } from './decorators/current-user.decorator';
+
 @Serialize(UserDto)
 @Controller('auth')
 export class UsersController {
@@ -20,31 +22,61 @@ export class UsersController {
         private authService : AuthService
     ){}
 
-    // for understanding cookie and session
-    // set color in the session object
-    @Get('/colors/:color')
-    setColor(@Param('color') color : string , @Session() session : any){
-        session.color = color;
+    // on the basis of the user id stored in the session , it will return the user data ; can be used to check who is currently logged in
+    // @Get('/whoami')
+    // whoAmI(@Session() session : any){
+    //     // if session.userId = null , then return this.repo.findOneBy({ id }) returns the first user , not null
+    //     return this.usersService.findOne(session.userId);
+    // }
+
+    // we want to extend the use case of the above 'whoami' - we want to create a custom decorator which when called gives the current user 
+    @Get('/whoami')
+    whoAmI(@CurrentUser() currentUser : string){
+        return currentUser;
     }
 
-    // get color from the session object
-    @Get('/colors')
-    getColor(@Session() session : any){
-        return session.color;
+    // for understanding cookie and session
+    // route 1 : set color in the session object
+    // @Get('/colors/:color')
+    // setColor(@Param('color') color : string , @Session() session : any){
+    //     session.color = color;
+    // }
+
+    // // route 2 : get color from the session object
+    // @Get('/colors')
+    // getColor(@Session() session : any){
+    //     return session.color;
+    // }
+
+    // here ,signout , kindof means remove the user id from the current session
+    @Post('/signout')
+    signout(@Session() session : any){
+        session.userId = null;
     }
 
     @Post('/signup')
-    createUser(@Body() body : CreateUserDto){
+    async createUser(@Body() body : CreateUserDto , @Session() session : any){
         // this.usersService.create(body.email , body.password);
 
         // using AuthService
-        return this.authService.singup(body.email , body.password);
+        // return this.authService.singup(body.email , body.password);
+
+        // maintaining the id of this user in the session
+        const user = await this.authService.singup(body.email , body.password);
+        session.userId = user.id;
+        return user;
     }
 
+    // note async and await here
     @Post('/signin')
-    singin(@Body() body : CreateUserDto){
+    async singin(@Body() body : CreateUserDto , @Session() session : any){
 
-        return this.authService.singin(body.email,body.password);
+        // return this.authService.singin(body.email,body.password);
+
+        // maintaining the id of this user in the session
+        const user = await this.authService.singin(body.email, body.password);
+        session.userId = user.id;
+        return user;
     }
 
     @Get('/:id')
