@@ -4,7 +4,10 @@ import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
 
 // to exclude few properties in api response : option 1
-import { UseInterceptors , ClassSerializerInterceptor } from "@nestjs/common";
+// import { UseInterceptors , ClassSerializerInterceptor } from "@nestjs/common";
+
+import { UseInterceptors } from "@nestjs/common";
+import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
 
 @Controller('auth')
 export class UsersController {
@@ -14,16 +17,20 @@ export class UsersController {
     @Post('/signup')
     createUser(@Body() body : CreateUserDto){
         // console.log(body);
-
         this.usersService.create(body.email , body.password);
     }
 
     // to exclude few properties in api response : option 1
-    // this converts the 'user' entity into a plain obj based on the rule defined in User Entity
-    @UseInterceptors(ClassSerializerInterceptor)
+    // this converts the 'user' entity into a plain obj based on the rule defined in User Entity , @Exclude()
+    // @UseInterceptors(ClassSerializerInterceptor)
+
+    // using custom interceptor
+    @UseInterceptors(SerializeInterceptor)
     @Get('/:id')
     async findUser(@Param('id') id : string){
         const user = await this.usersService.findOne(parseInt(id));
+
+        console.log('handler controller is running');
 
         if(!user){
             throw new NotFoundException('user not found');
