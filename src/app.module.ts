@@ -15,7 +15,6 @@ import { Report } from './reports/report.entity';
     TypeOrmModule.forRoot({
       type : 'sqlite', //type of db that we want to use
       database : 'db.sqlite', //a file db.sqlite will be created in root directory
-      // mentioning all the entities here
       entities : [User , Report],
       synchronize : true
     })

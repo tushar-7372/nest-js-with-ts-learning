@@ -7,7 +7,7 @@
 => installing typeORM and sqlite3 for managing db
 > npm install @nestjs/typeorm typeorm sqlite3
 
-: topics : 
+: topics 2 : 
 
 => pipes ( for validating incoming req )
 - need to install these 2 packages
@@ -27,4 +27,6 @@ using api client here
 
 => excluding few properties in api response ( option 2)
 - writting custom interceptors and using dto
-- 
+
+: topics 2 ( current ): 
+-
