@@ -8,7 +8,8 @@ import { UserDto } from './dtos/user.dto';
 // import { UseInterceptors , ClassSerializerInterceptor } from "@nestjs/common";
 
 import { UseInterceptors } from "@nestjs/common";
-import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
+// import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 
 @Controller('auth')
 export class UsersController {
@@ -29,7 +30,9 @@ export class UsersController {
     // @UseInterceptors(SerializeInterceptor)
 
     // customising interceptor to receive any kind of dto
-    @UseInterceptors(new SerializeInterceptor(UserDto))
+    // @UseInterceptors(new SerializeInterceptor(UserDto))
+    // using custom decorator for serialize interceptor
+    @Serialize(UserDto)
     @Get('/:id')
     async findUser(@Param('id') id : string){
         const user = await this.usersService.findOne(parseInt(id));

@@ -29,5 +29,4 @@ using api client here
 
 ===
 what is done in this commit : 
-created an interceptor and a dto , applied that dto to that interceptor that is manipulating the data we are sending as response 
-to fix this issue : we have customised the serialise interceptor to receive any dto ( making use of contructor )
+to make use of custom interceptors, we were using complex code @UseInterceptors(new SerializeInterceptor(UserDto)) , refactored this with the help of custom decorators , we will further improve this by applying it to all routes and removing any type
