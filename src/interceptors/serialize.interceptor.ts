@@ -2,9 +2,12 @@ import { UseInterceptors , NestInterceptor ,  ExecutionContext , CallHandler } f
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { plainToClass } from "class-transformer";
-import { UserDto } from "src/users/dtos/user.dto";
+// import { UserDto } from "src/users/dtos/user.dto";
 
 export class SerializeInterceptor implements NestInterceptor{
+
+    constructor(private dto : any){
+    }
 
     intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any>  {
         
@@ -20,7 +23,7 @@ export class SerializeInterceptor implements NestInterceptor{
                 // it is converting the plain 'data' to UserDto
 
                 // problem here : this SerializeInterceptor reponse is tightly mapped with UserDto , which we want to make generic
-                return plainToClass(UserDto , data , {
+                return plainToClass(this.dto , data , {
                     excludeExtraneousValues : true // this only sends the fields marked with @Expose() decorator
                 })
             })

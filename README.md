@@ -28,5 +28,6 @@ using api client here
 - writting custom interceptors and using dto
 
 ===
-what is done in the above commit : 
+what is done in this commit : 
 created an interceptor and a dto , applied that dto to that interceptor that is manipulating the data we are sending as response 
+to fix this issue : we have customised the serialise interceptor to receive any dto ( making use of contructor )

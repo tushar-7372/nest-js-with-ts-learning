@@ -2,6 +2,7 @@ import { Body, Controller , Post  , Get , Patch , Param , Query , Delete , NotFo
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { UserDto } from './dtos/user.dto';
 
 // to exclude few properties in api response : option 1
 // import { UseInterceptors , ClassSerializerInterceptor } from "@nestjs/common";
@@ -25,12 +26,15 @@ export class UsersController {
     // @UseInterceptors(ClassSerializerInterceptor)
 
     // using custom interceptor
-    @UseInterceptors(SerializeInterceptor)
+    // @UseInterceptors(SerializeInterceptor)
+
+    // customising interceptor to receive any kind of dto
+    @UseInterceptors(new SerializeInterceptor(UserDto))
     @Get('/:id')
     async findUser(@Param('id') id : string){
         const user = await this.usersService.findOne(parseInt(id));
 
-        console.log('handler controller is running');
+        // console.log('handler controller is running');
 
         if(!user){
             throw new NotFoundException('user not found');
