@@ -7,7 +7,7 @@
 => installing typeORM and sqlite3 for managing db
 > npm install @nestjs/typeorm typeorm sqlite3
 
-: topics 2 : 
+: topics 1 : 
 
 => pipes ( for validating incoming req )
 - need to install these 2 packages
@@ -28,5 +28,5 @@ using api client here
 => excluding few properties in api response ( option 2)
 - writting custom interceptors and using dto
 
-: topics 2 ( current ): 
--
+: topics 2 ( current ) : 
+commit :  creating a service (AuthService) inside UsersModule that users will call for creating account and login in ( internally we will hash the password )
