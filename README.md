@@ -67,6 +67,10 @@ using api client here
 - using Guards
 - connecting report controller , report service -> ( using ReportEntity ) -> type orm Repository to save in db
 -
-- **commit**
 - ASSOCIATIONS ( relating one record with another )
 - connected user entity with reports entity
+-
+- **commit**
+- understand OneToMany() and ManyToOne() decorator and it's argument - ?
+- using ASSOCIATION => use case : whenever a report is created , we want to associate it with the user who created it
+- making association between report created and the user who created it

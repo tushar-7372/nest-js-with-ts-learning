@@ -43,6 +43,7 @@ export class User{
     }
 
     // building association between User and Report
+    // understand this decorator in more detail 
     @OneToMany(() => Report , (report) => report.user)
     reports : Report[]
 

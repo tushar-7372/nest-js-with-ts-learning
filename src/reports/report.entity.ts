@@ -34,6 +34,7 @@ export class Report{
     // deleted the db after making this change
     // @ManyToOne() - causes a change in the report db , it will add a new column that will store the id of each user
     // building association between User and Report
+    // understand this decorator in more detail 
     @ManyToOne( () => User , (user) => user.reports)
     user : User
 }
