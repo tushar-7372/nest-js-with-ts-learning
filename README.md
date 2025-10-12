@@ -61,9 +61,12 @@ using api client here
 > npm install cross-env
 
 **: topics 4 ( working on report module ) :**
-- **commit**
 - creating routes 
 - creating DTO for incoming req
 - using reports service in reports controller ( DI ( Injectable , providers , constructor ))
 - using Guards
 - connecting report controller , report service -> ( using ReportEntity ) -> type orm Repository to save in db
+-
+- **commit**
+- ASSOCIATIONS ( relating one record with another )
+- connected user entity with reports entity

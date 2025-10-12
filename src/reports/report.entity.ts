@@ -1,5 +1,9 @@
 import { Column , Entity , PrimaryGeneratedColumn } from "typeorm";
 
+// ASSOCIATIONS
+import { ManyToOne } from "typeorm"; // many reports have one user
+import { User } from "src/users/users.entity";
+
 @Entity()
 export class Report{
 
@@ -26,4 +30,10 @@ export class Report{
 
     @Column()
     mileage : number;
+
+    // deleted the db after making this change
+    // @ManyToOne() - causes a change in the report db , it will add a new column that will store the id of each user
+    // building association between User and Report
+    @ManyToOne( () => User , (user) => user.reports)
+    user : User
 }

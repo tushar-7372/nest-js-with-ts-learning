@@ -1,6 +1,10 @@
 import { AfterInsert , AfterRemove , AfterUpdate ,Entity , Column , PrimaryGeneratedColumn } from "typeorm";
 // to understand why we use option 1 (create and save) instead of option 2 (save)
 
+// ASSOCIATIONS
+import { OneToMany } from "typeorm"; // one user has many reports
+import { Report } from "src/reports/report.entity"; // importing Report Entity to establish the association
+
 // to exclude few properties in api response : option 1
 // when we are sending the user data , we are also sending the user's password which is not correct
 // import { Exclude } from "class-transformer";
@@ -37,5 +41,9 @@ export class User{
     logRemove(){
         console.log('removed user with id ' , this.id);     
     }
+
+    // building association between User and Report
+    @OneToMany(() => Report , (report) => report.user)
+    reports : Report[]
 
 }
