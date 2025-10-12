@@ -60,3 +60,4 @@ using api client here
 - understanding ConfigModule and ConfigService from @nestjs/config package ( usage in 'app.module.ts')
 - in 'app.module.ts' we are specifying env.NODE_ENV , this is set from script's command (package.json), for adding env in the script's command , we are going use a command line package 'cross-env'
 > npm install cross-env
+- 
