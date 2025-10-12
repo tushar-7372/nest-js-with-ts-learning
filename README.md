@@ -70,7 +70,11 @@ using api client here
 - ASSOCIATIONS ( relating one record with another )
 - connected user entity with reports entity
 -
-- **commit**
 - understand OneToMany() and ManyToOne() decorator and it's argument - ?
 - using ASSOCIATION => use case : whenever a report is created , we want to associate it with the user who created it
 - making association between report created and the user who created it
+-
+- **commit**
+- currently , create report api returns the report created and the user data ( including password ) as api response which is not ideal - fixing this 
+- build a report dto that will have the fields we want to expose and use in the INTERCEPTOR to manipulate the api response
+- making use of Transform() decorator

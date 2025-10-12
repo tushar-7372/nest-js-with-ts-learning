@@ -7,6 +7,10 @@ import { AuthGuard } from 'src/guards/auth.guard';
 import { CurrentUser } from 'src/users/decorators/current-user.decorator';
 import { User } from 'src/users/users.entity';
 
+// interceptor 
+import { ReportDto } from './dtos/report.dto';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
+
 @Controller('reports')
 export class ReportsController {
 
@@ -15,6 +19,7 @@ export class ReportsController {
 
     @Post()
     @UseGuards(AuthGuard)
+    @Serialize(ReportDto)
     createReport(@Body() body : CreateReportDto , @CurrentUser() currentUser : User){
         // to save the current user's data with report , we are making use of the 2nd parameter
 
