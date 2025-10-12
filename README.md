@@ -28,7 +28,7 @@ using api client here
 => excluding few properties in api response ( option 2)
 - writting custom interceptors and using dto
 
-**: topics 2 ( current ) :**
+**: topics 2 :**
 - creating a service (AuthService) inside UsersModule that users will call for creating account and login in ( internally we will hash the password )
 - auth service via DEPENDENCY INJECTION is making use of users service to create an user
 - internally implementing SALT and HASHING
@@ -50,6 +50,13 @@ using api client here
 - 
 - improving CurrentUserInterceptor from controller scoped to global scoped
 - 
-- **commit**
 - rejecting requests to a certain handler if the user is not sugned in ( GUARD )
-- 
+
+**: topics 3 ( current ) :**
+- **commit**
+- to manage the config we are installing a package 
+> npm install @nestjs/config
+- creating different .env files ( for development and test ) and using values from this .env file in 'app.module.ts'
+- understanding ConfigModule and ConfigService from @nestjs/config package ( usage in 'app.module.ts')
+- in 'app.module.ts' we are specifying env.NODE_ENV , this is set from script's command (package.json), for adding env in the script's command , we are going use a command line package 'cross-env'
+> npm install cross-env
