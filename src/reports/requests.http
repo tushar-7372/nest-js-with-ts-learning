@@ -1,0 +1,12 @@
+POST http://localhost:3000/reports
+content-type :application/json
+
+{
+    "make" : "telsa",
+    "model" : "s2",
+    "year" : 2000,
+    "mileage" : 10000,
+    "lng" : 0,
+    "lat" : 0,
+    "price" : 10000
+}

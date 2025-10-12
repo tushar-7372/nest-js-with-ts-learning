@@ -52,12 +52,18 @@ using api client here
 - 
 - rejecting requests to a certain handler if the user is not sugned in ( GUARD )
 
-**: topics 3 ( current ) :**
-- **commit**
+**: topics 3 :**
 - to manage the config we are installing a package 
 > npm install @nestjs/config
 - creating different .env files ( for development and test ) and using values from this .env file in 'app.module.ts'
 - understanding ConfigModule and ConfigService from @nestjs/config package ( usage in 'app.module.ts')
 - in 'app.module.ts' we are specifying env.NODE_ENV , this is set from script's command (package.json), for adding env in the script's command , we are going use a command line package 'cross-env'
 > npm install cross-env
-- 
+
+**: topics 4 ( working on report module ) :**
+- **commit**
+- creating routes 
+- creating DTO for incoming req
+- using reports service in reports controller ( DI ( Injectable , providers , constructor ))
+- using Guards
+- connecting report controller , report service -> ( using ReportEntity ) -> type orm Repository to save in db
