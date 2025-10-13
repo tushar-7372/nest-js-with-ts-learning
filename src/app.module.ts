@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
@@ -10,6 +10,7 @@ import { Report } from './reports/report.entity';
 // for reading values from .env file 
 import { ConfigModule , ConfigService } from '@nestjs/config';
 import { config } from 'process';
+import cookieSession from 'cookie-session';
 // ConfigModule - it helps to sepcify which of the two files to read value from '.env.development' or '.env.test'
 // ConfigService - it will provide that value for the rest of the service
 
@@ -55,4 +56,14 @@ import { config } from 'process';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+
+// here , we can define how a middleware should apply
+export class AppModule {
+  configure(consumer : MiddlewareConsumer){
+    consumer.apply(
+      cookieSession({
+        keys : ['kjijo']
+      }),
+    ).forRoutes('*');
+  }
+}

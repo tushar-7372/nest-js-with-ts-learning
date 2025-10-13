@@ -81,7 +81,10 @@ using api client here
 - use case : when the reports are created , it will have 'approved' value as false , someone will approve it 
 - added a new route and added a new column in reports table , created a DTO to validate the req of this api
 - 
-- **commit**
 - use case : only specific users should be able to approve a report
 - using GUARDS ( creating AdminGuard ) and adding on the 'reports/{id}' api
 - BUT the guard is not working as expected
+-
+- **commit**
+- MIDDLEWARE , GUARDS , INTERCEPTOR 
+- issue and fix : to get current user data from request we are using interceptor and we are using this interceptor in the guard, but the guard run before the interceptor which is causing the issue ( interceptors always run after middleware and guards ) , so we are going to convert this current user interceptor to a ( global ) middleware 
