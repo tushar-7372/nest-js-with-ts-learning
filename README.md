@@ -60,7 +60,7 @@ using api client here
 - in 'app.module.ts' we are specifying env.NODE_ENV , this is set from script's command (package.json), for adding env in the script's command , we are going use a command line package 'cross-env'
 > npm install cross-env
 
-**: topics 4 ( working on report module ) :**
+**: topics 4 ( report module ) :**
 - creating routes 
 - creating DTO for incoming req
 - using reports service in reports controller ( DI ( Injectable , providers , constructor ))
@@ -74,7 +74,10 @@ using api client here
 - using ASSOCIATION => use case : whenever a report is created , we want to associate it with the user who created it
 - making association between report created and the user who created it
 -
-- **commit**
 - currently , create report api returns the report created and the user data ( including password ) as api response which is not ideal - fixing this 
 - build a report dto that will have the fields we want to expose and use in the INTERCEPTOR to manipulate the api response
 - making use of Transform() decorator
+- 
+- **commit**
+- use case : when the reports are created , it will have 'approved' value as false , someone will approve it 
+- added a new route and added a new column in reports table , created a DTO to validate the req of this api

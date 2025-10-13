@@ -37,4 +37,7 @@ export class Report{
     // understand this decorator in more detail 
     @ManyToOne( () => User , (user) => user.reports)
     user : User
+
+    @Column({ default : false })
+    approved : boolean;
 }

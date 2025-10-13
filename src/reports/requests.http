@@ -1,12 +1,21 @@
+### create a report
 POST http://localhost:3000/reports
 content-type :application/json
 
 {
-    "make" : "telsa",
-    "model" : "s4",
+    "make" : "maruti",
+    "model" : "breeza",
     "year" : 2000,
     "mileage" : 10000,
     "lng" : 0,
     "lat" : 0,
     "price" : 10000
+}
+
+### approve an existing report
+PATCH http://localhost:3000/reports/1
+content-type :application/json
+
+{
+    "approved" : true
 }

@@ -1,4 +1,4 @@
-import { Body, Controller , Post , UseGuards } from '@nestjs/common';
+import { Body, Controller , Post , UseGuards , Patch , Param } from '@nestjs/common';
 import { CreateReportDto } from './dtos/create-report.dto';
 import { ReportsService } from './reports.service';
 import { AuthGuard } from 'src/guards/auth.guard';
@@ -10,6 +10,9 @@ import { User } from 'src/users/users.entity';
 // interceptor 
 import { ReportDto } from './dtos/report.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
+
+// creating route for approving report
+import { ApproveReportDto } from './dtos/approve-report.dto';
 
 @Controller('reports')
 export class ReportsController {
@@ -25,5 +28,10 @@ export class ReportsController {
 
         // currently , it returns the report created and the user data ( including password ) as api response which is not ideal
         return this.reportsService.create(body , currentUser);
+    }
+
+    @Patch('/:id')
+    approveReport(@Param('id') id : string , @Body() body : ApproveReportDto){
+        return this.reportsService.changeApproval(id , body.approved);
     }
 }
