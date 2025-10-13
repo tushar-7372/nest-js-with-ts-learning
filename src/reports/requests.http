@@ -3,7 +3,7 @@ POST http://localhost:3000/reports
 content-type :application/json
 
 {
-    "make" : "maruti",
+    "make" : "user2 car",
     "model" : "breeza",
     "year" : 2000,
     "mileage" : 10000,
@@ -13,7 +13,7 @@ content-type :application/json
 }
 
 ### approve an existing report
-PATCH http://localhost:3000/reports/1
+PATCH http://localhost:3000/reports/6
 content-type :application/json
 
 {

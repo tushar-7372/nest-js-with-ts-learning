@@ -78,6 +78,10 @@ using api client here
 - build a report dto that will have the fields we want to expose and use in the INTERCEPTOR to manipulate the api response
 - making use of Transform() decorator
 - 
-- **commit**
 - use case : when the reports are created , it will have 'approved' value as false , someone will approve it 
 - added a new route and added a new column in reports table , created a DTO to validate the req of this api
+- 
+- **commit**
+- use case : only specific users should be able to approve a report
+- using GUARDS ( creating AdminGuard ) and adding on the 'reports/{id}' api
+- BUT the guard is not working as expected

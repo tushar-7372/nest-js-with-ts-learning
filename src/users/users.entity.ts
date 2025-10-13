@@ -47,4 +47,7 @@ export class User{
     @OneToMany(() => Report , (report) => report.user)
     reports : Report[]
 
+    // for using AdminGuard
+    @Column({ default : true }) 
+    admin : boolean;
 }
