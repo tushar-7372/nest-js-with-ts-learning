@@ -85,6 +85,8 @@ using api client here
 - using GUARDS ( creating AdminGuard ) and adding on the 'reports/{id}' api
 - BUT the guard is not working as expected
 -
-- **commit**
 - MIDDLEWARE , GUARDS , INTERCEPTOR 
 - issue and fix : to get current user data from request we are using interceptor and we are using this interceptor in the guard, but the guard run before the interceptor which is causing the issue ( interceptors always run after middleware and guards ) , so we are going to convert this current user interceptor to a ( global ) middleware 
+-
+- **commit**
+- fixing the type error in 'current-user.middleware.ts' of  req.currentUser = user;

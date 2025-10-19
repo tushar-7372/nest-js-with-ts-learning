@@ -2,6 +2,18 @@ import { Injectable , NestMiddleware } from "@nestjs/common";
 import { Request , Response , NextFunction } from "express";
 import { UsersService } from "../users.service";
 
+// the error that we were getting below 
+// @ts-ignore req.currentUser = user; -> this we are trying to fix 
+import { User } from "../users.entity";
+declare global{
+    namespace Express {
+        interface Request {
+           	currentUser?: User | null 
+        }
+    }
+}
+// this is saying find the Express library , find the interface Request and add one more propertly to it ( currentUser )
+
 @Injectable()
 export class CurrentUserMiddleware implements NestMiddleware{
 
@@ -19,7 +31,6 @@ export class CurrentUserMiddleware implements NestMiddleware{
         if(userId){
             const user = await this.usersService.findOne(userId);
 
-            // @ts-ignore
             req.currentUser = user;
         }
 
