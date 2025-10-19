@@ -88,5 +88,8 @@ using api client here
 - MIDDLEWARE , GUARDS , INTERCEPTOR 
 - issue and fix : to get current user data from request we are using interceptor and we are using this interceptor in the guard, but the guard run before the interceptor which is causing the issue ( interceptors always run after middleware and guards ) , so we are going to convert this current user interceptor to a ( global ) middleware 
 -
-- **commit**
 - fixing the type error in 'current-user.middleware.ts' of  req.currentUser = user;
+-
+- **commit**
+- issue and fix : for api calls , in query strings , the query get passed as strings but in getEstimateDto , we are making validation of numbers , due to this validation fails 
+- transforming query strings

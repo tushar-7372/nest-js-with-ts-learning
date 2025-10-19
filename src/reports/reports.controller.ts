@@ -3,6 +3,10 @@ import { CreateReportDto } from './dtos/create-report.dto';
 import { ReportsService } from './reports.service';
 import { AuthGuard } from 'src/guards/auth.guard';
 
+// creating get estimate route
+import { Get , Query } from '@nestjs/common';
+import { GetEstimateDto } from './dtos/get-estimate.dto';
+
 // importing CurrentUser decorator to get the current user
 import { CurrentUser } from 'src/users/decorators/current-user.decorator';
 import { User } from 'src/users/users.entity';
@@ -36,4 +40,10 @@ export class ReportsController {
     approveReport(@Param('id') id : string , @Body() body : ApproveReportDto){
         return this.reportsService.changeApproval(id , body.approved);
     }
+
+    @Get()
+    getEstimate(@Query() query : GetEstimateDto){
+        console.log(query);
+    }
+
 }
